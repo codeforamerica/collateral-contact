@@ -52,7 +52,12 @@
         </div>
 
       <div style="border-bottom: 2px solid #F7F5F4;">
-        <audio controls src=<%= @client.recording %>></audio>
+        <audio controls>
+          <source src=<%= @client.recording %> type="audio/mpeg">
+          <!-- fallback for non supporting browsers goes here -->
+          <p>Your browser does not support HTML5 audio, but you can still 
+            <a href=<%= @client.recording %>>download the music</a>.</p>
+        </audio>
       </div>
 
       <div class="form-card__footer">
