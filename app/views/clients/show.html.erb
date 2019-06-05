@@ -1,0 +1,67 @@
+<div class="page-wrapper">
+  <div class="slab">
+    <main id="main" class="form-card">
+      <header class="form-card__header">
+        <h1 class="form-card__title">Jane Doe</h1>
+        <h1 class="text--help">Case information</h1>
+      </header>
+
+      <div class="form-card__content">
+        <div class="grid">
+          <div class="grid__item width-one-third">
+            <div class="summary-table summary-table--left">
+            <% if @client.verified? %>
+              <span class="label label--green">Verified</span>
+            <% else %>
+              <span class="label label--red">Unverified</span>
+            <% end %>
+              <p class="summary-table__label">Employment</p>
+              <p class="summary-table__value">Walmart</p>
+              <p class="summary-table__label">Supervisor Name and Phone</p>
+              <p class="summary-table__value">Joe Doe</p>
+              <p class="summary-table__value"><%= @client.phone %></p>
+            </div>
+          </div>
+          <div class="grid__item width-one-third">
+            <div class="summary-table summary-table--left">
+              <% if @client.verified? %>
+                <span class="label label--green">Verified</span>
+              <% else %>
+                <span class="label label--red">Unverified</span>
+              <% end %>              <p class="summary-table__label">Lost Job</p>
+              <p class="summary-table__value">Toys R Us</p>
+              <p class="summary-table__label">Supervisor Name and Phone</p>
+              <p class="summary-table__value">Jackie Jackson</p>
+              <p class="summary-table__value">(555) 555-5555</p>
+            </div>
+          </div>
+          <div class="grid__item width-one-third">
+            <div class="summary-table summary-table--left">
+              <% if @client.verified? %>
+                <span class="label label--green">Verified</span>
+              <% else %>
+                <span class="label label--red">Unverified</span>
+              <% end %>
+              <p class="summary-table__label">Residence</p>
+              <p class="summary-table__value">123 Main St</p>
+              <p class="summary-table__label">Land Lord</p>
+              <p class="summary-table__value">Scrooge McDuck</p>
+              <p class="summary-table__value">(555) 555-5555</p>
+            </div>
+          </div>
+        </div>
+
+      <div style="border-bottom: 2px solid #F7F5F4;">
+        <audio controls src=<%= @client.recording %>></audio>
+      </div>
+
+      <div class="form-card__footer">
+        <footer class="form-card__button_right">
+          <%= form_for @client, url: client_path(@client), method: :put, builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+            <%= f.cfa_single_tap_button(:verified, "Verify", true, classes: ["button--primary"]) %>
+          <% end %>
+        </footer>
+      </div>
+    </main>
+  </div>
+</div>

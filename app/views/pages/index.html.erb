@@ -1,0 +1,31 @@
+<section class="slab slab--hero">
+  <div class="hero--cta-options">
+    <div class="grid">
+      <div class="grid__item width-one-half">
+        <h1>
+          The Verificationator
+        </h1>
+        <%= link_to new_client_path, class: ["button button--cta"] do %>
+          Log In <i class="button__icon icon-arrow_forward"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slab slab--white">
+  <div class="grid">
+    <div class="grid__item width-one-half">
+      <p class="h4">Automatically verify a client's:</p>
+      <ul class="list--padded">
+        <li><i class="icon-done"></i>Place of employment</li>
+        <li><i class="icon-done"></i>Lost jobs</li>
+        <li><i class="icon-done"></i>Place of residence</li>
+      </ul>
+    </div>
+    <br/>
+    <div class="grid__item width-one-half">
+      <%= image_tag "logo-black.png" %>
+    </div>
+  </div>
+</section>

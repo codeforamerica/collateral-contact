@@ -1,0 +1,53 @@
+<div class="page-wrapper">
+  <div class="slab">
+    <main id="main" class="form-card">
+      <header class="form-card__header">
+        <h1 class="form-card__title">Jane Doe</h1>
+        <h1 class="text--help">Case information</h1>
+      </header>
+
+      <div class="form-card__content">
+        <div class="grid">
+          <div class="grid__item width-one-third">
+            <div class="summary-table summary-table--left">
+              <span class="label label--red">Unverified</span>
+              <p class="summary-table__label">Employment</p>
+              <p class="summary-table__value">Walmart</p>
+              <p class="summary-table__label">Supervisor Name and Phone</p>
+              <p class="summary-table__value">Joe Doe</p>
+              <%= form_for @client, url: clients_path, builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+                <%= f.cfa_input_field :phone, 'Phone', classes: ["text-input","form-width--phone"]%>
+                <%= f.submit "Send in the robots 🤖", class: ["button"] %>
+              <% end %>
+            </div>
+          </div>
+          <div class="grid__item width-one-third">
+            <div class="summary-table summary-table--left">
+              <span class="label label--red">Unverified</span>
+              <p class="summary-table__label">Lost Job</p>
+              <p class="summary-table__value">Toys R Us</p>
+              <p class="summary-table__label">Supervisor Name and Phone</p>
+              <p class="summary-table__value">Jackie Jackson</p>
+              <p class="summary-table__value">(555) 555-5555</p>
+            </div>
+          </div>
+          <div class="grid__item width-one-third">
+            <div class="summary-table summary-table--left">
+              <span class="label label--red">Unverified</span>
+              <p class="summary-table__label">Residence</p>
+              <p class="summary-table__value">123 Main St</p>
+              <p class="summary-table__label">Land Lord</p>
+              <p class="summary-table__value">Scrooge McDuck</p>
+              <p class="summary-table__value">(555) 555-5555</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card__footer">
+        <footer class="form-card__button_right">
+        </footer>
+      </div>
+    </main>
+  </div>
+</div>

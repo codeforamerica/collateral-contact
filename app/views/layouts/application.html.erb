@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>CollateralContact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +11,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="page-wrapper">
+      <header class="main-header">
+        <div class="toolbar">
+          <div class="toolbar__left">
+            <h1 class="main-header__title"><a class="main-header__logo" href="/">Collateral Contact</a></h1>
+          </div>
+        </div>
+      </header>
+
+      <%= yield %>
+
+      <footer class="main-footer">
+        <div class="grid">
+          <div class="grid__item">
+            <p class="text--small">
+              Collateral Contact is a service run by <a href="https://www.codeforamerica.org/">Code for America</a>.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
