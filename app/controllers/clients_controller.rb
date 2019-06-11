@@ -10,11 +10,6 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
-    twilio = Twilio::REST::Client.new
-    recordings = twilio.recordings
-    most_recent_recording_sid = recordings.list.sort_by { |r| r.date_created }.last.sid
-    recording = "https://api.twilio.com/2010-04-01/Accounts/"+ENV["TWILIO_ACCOUNT_SID"]+"/Recordings/"+most_recent_recording_sid+".mp3"
-    @client.update(recording: recording)
   end
 
   # GET /clients/new
@@ -36,15 +31,13 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1
   # PATCH/PUT /clients/1.json
   def update
-    respond_to do |format|
-      if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
-        format.json { render :show, status: :ok, location: @client }
-      else
-        format.html { render :edit }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
-      end
+    @client.update(client_params)
+
+    if @client.calls_done?
+      @client.update_from_twilio
     end
+
+    redirect_to @client
   end
 
   # DELETE /clients/1
@@ -65,6 +58,6 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:phone, :recording, :transcription, :verified)
+      params.require(:client).permit(:phone, :transcription, :verified, :calls_done)
     end
 end

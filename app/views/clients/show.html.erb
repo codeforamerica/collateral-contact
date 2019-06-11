@@ -50,21 +50,30 @@
             </div>
           </div>
         </div>
-
-      <div style="border-bottom: 2px solid #F7F5F4;">
-        <audio controls>
-          <source src=<%= @client.recording %> type="audio/mpeg">
-          <!-- fallback for non supporting browsers goes here -->
-          <p>Your browser does not support HTML5 audio, but you can still 
-            <a href=<%= @client.recording %>>download the music</a>.</p>
-        </audio>
-      </div>
+    </div>
 
       <div class="form-card__footer">
         <footer class="form-card__button_right">
+        <% if @client.calls_done? %>
+        <div class="summary-table summary-table--left with-padding-large">
+          <p class="summary-table__label">Recording</p>
+          <p class="summary-table__value">
+            <audio controls>
+              <source src=<%= url_for(@client.recording) %> type="audio/mpeg">
+            </audio>
+          </p>
+          <p class="summary-table__label">Transcription</p>
+          <p class="summary-table__value"><%= @client.transcription %></p>
+        </div>
+
           <%= form_for @client, url: client_path(@client), method: :put, builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
             <%= f.cfa_single_tap_button(:verified, "Verify", true, classes: ["button--primary"]) %>
           <% end %>
+        <% else %>
+          <%= form_for @client, url: client_path(@client), method: :put, builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+            <%= f.cfa_single_tap_button(:calls_done, "Verification call is complete?", true) %>
+          <% end %>
+        <% end %>
         </footer>
       </div>
     </main>
